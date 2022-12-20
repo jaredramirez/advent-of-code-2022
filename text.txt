@@ -1,0 +1,87 @@
+
+Hey folks, I've been working on day 12 solving using dijkstra's. I have a working solution to part 1, but it takes extremely long, about ~20 minutes using using the real input from aoc. Here is my solution:
+
+day12.loop : Vector2 -> Vector2 -> Map Vector2 (Char, Optional Nat) -> Set Vector2 ->{Abort} Map Vector2 (Char, Optional Nat)
+day12.loop end cur nodes unvisited =
+    use Map get
+    use Optional toAbort
+    use Set contains
+    use Tuple at1 at2
+
+	-- get the current node's values
+    curNode = Map.get cur nodes |> toAbort
+    curChar = at1 curNode
+    curDist = curNode |> at2 |> toAbort
+
+    nextDist =
+      use Nat +
+      curDist + 1
+
+	-- of the 4 surrounding nodes, find the unvisited ones that are climbable
+    nextNodes =
+      [up, Vector2.right, Vector2.left, down]
+        |> List.map (Vector2.add cur)
+        |> List.filter (nextVec -> contains nextVec unvisited)
+        |> List.filterMap
+             (nextVec ->
+               (match get nextVec nodes with
+                 Some (nextChar, _) ->
+                   use Nat - <
+                   if toClimbValue nextChar - toClimbValue curChar < 2 then
+                     Some nextVec
+                   else None
+                 None -> None))
+        |> List.foldLeft
+             (nodes nextVec ->
+               Map.adjust
+                 (cases
+                   (c, optDistance) ->
+                     (c,
+                     optDistance
+                       |> Optional.map (Nat.min nextDist)
+                       |> Optional.getOrElse nextDist
+                       |> Some))
+                 nextVec
+                 nodes)
+             nodes
+
+	-- mark current node as visited
+    nextUnvisited = Set.delete cur unvisited
+
+	-- find the next unvisited node with the lowest distance
+    optNextNode =
+      use Optional map
+      nextNodes
+        |> Map.toList
+        |> List.filterMap
+             (cases
+               (vec, (_, optDistance)) ->
+                 if contains vec nextUnvisited then map (pair vec) optDistance
+                 else None)
+        |> List.sortBy at2
+        |> List.head
+        |> map at1
+
+	-- if we have another node and it's not the end node, loop
+    match optNextNode with
+      None -> nextNodes
+      Some nextNode ->
+        if nextNode === end then nextNodes
+        else loop end nextNode nextNodes nextUnvisited
+
+
+day12.part1 : Text ->{Abort} Map Vector2 (Char, Optional Nat)
+day12.part1 input =
+  -- (Vector2, Vector2, Map Vector2 (Char, Optional Nat))
+  (start, end, map) = day12.input.parse input
+
+  -- Set start node as 0
+  nodes =
+    use Char ==
+    Map.map (c -> (c, if c == ?S then Some 0 else None)) map
+
+  -- get unvisited
+  unvisited = map |> Map.keys |> List.toSet
+
+  -- run it
+  loop end start nodes unvisited

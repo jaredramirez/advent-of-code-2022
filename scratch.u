@@ -1,0 +1,33 @@
+
+day14.part1 : Text -> Nat
+day14.part1 input =
+  0
+
+day14.input.parse : Text -> Map Vector2 ()
+day14.input.parse input =
+  Map.empty
+
+day14.input.sample : Text
+day14.input.sample = "498,4 -> 498,6 -> 496,6
+503,4 -> 502,4 -> 502,9 -> 494,9"
+
+---
+
+
+test> day14.part1.sample =
+  check
+    let
+      expected = 31
+      actual = toOptional! '(day14.part1 day14.input.sample)
+      if actual === Some expected then true
+      else bug ("Expected", expected, "Got", actual)
+
+---
+
+test> day14.part1.real =
+  check
+    let
+      expected = 31
+      actual = toOptional! '(day14.part1 day14.input.real)
+      if actual === Some expected then true
+      else bug ("Expected", expected, "Got", actual)

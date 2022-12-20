@@ -1,0 +1,100 @@
+add
+ls
+cd advent_of_code_2022
+ui
+find Heap.inse
+find each
+find List.each
+cd advent_of_code_2022
+cd ..
+cd ad
+ui
+find ordering
+cd advent_of_code_2022
+find ordering
+find ordering
+pull stew.public.projects.dataextra.latest lib.dataextra
+pull stew.public.dataextra.latest lib.dataextra
+edit day12.part1.loop 
+edit day12.part1.sample
+edit day12.part1
+edit main.day12.part1
+cd advent_of_code_2022
+edit main.day12.part1
+add
+update
+h
+move.type day13.Tree day13.help.Tree
+move.namespace day13.Tree day13.help.Tree
+delete.namespace day13.Part
+delete.type day13.Part
+move.namespace day13.Progress day13.Tree.CompareProgress
+move.type day13.Progress day13.Tree.CompareProgress
+delete.type day13.Progress
+delete.type day13.Progress
+move.term compare day13.Tree.compare
+delete.type day13.Progress
+update
+update
+update
+update
+find lteq
+find Order
+find compare
+update
+add
+find lines
+jjj
+update
+add
+add
+find replicate
+find zip
+ui
+find toOpt
+find Either
+ls lib
+ls
+ pull rlmark.public.parsing.latest lib.parsing
+find List.at
+find List.get
+cd advent_of_code_2022
+cd ..
+cd advent_of_code_2022d
+move.namespace day13 advent_of_code_2022.day13
+cd ..
+edit day12.part1.loop
+edit day12.part1.sample
+edit day12.part1
+namespace advent_of_code_2022
+find base split
+find
+find 
+find split
+add
+push jaredramirez.public.advent_of_code._2022 .advent_of_code_2022
+push.push jaredramirez.public.advent_of_code._2022 .advent_of_code_2022
+push.create jaredramirez.public.advent_of_code._2022 .advent_of_code_2022
+move.term advent_of_code_2022.day12.loop advent_of_code_2022.day12.part1.loop
+push.create jaredramirez.public.advent_of_code._2022 .advent_of_code_2022
+push.create jaredramirez.public.advent_of_code.2022 .advent_of_code_2022
+cd ..
+edit day12.input.parse 
+namespace advent_of_code_2022
+auth.login
+auth.login
+push.create jaredramirez.public.advent_of_code.2022 .advent_of_code_2022
+auth.login
+cd ..
+update
+update
+find default
+find Optional.defa
+find Optional.with
+find Optional.or
+find Optional
+find Optinoal
+ui
+edit day12.part1.sample
+edit day12.part1.real
+edit day12.part1
